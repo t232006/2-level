@@ -22,6 +22,7 @@ namespace home1
         //static World() { }
         static asteroid[] asteroids;
         static SpaceElement[] stars;
+        static List<crack> cracks=new List<crack>();
         static World() { }
         
         public static void Init(Form space)
@@ -49,7 +50,7 @@ namespace home1
             {
                 int[] kk=new int[4];
                 kk[0] = k.Next(Width); kk[1] = k.Next(Height);//position
-                kk[2] = k.Next(1, 20); //size
+                kk[2] = k.Next(5, 20); //size
                 kk[3] = k.Next(1, 5); //speed 
                 double ang = k.Next();
                 asteroids[i] = new asteroid(new Point(kk[0], kk[1]), new Size(kk[2], kk[2]), ang, (byte)kk[3]);
@@ -66,8 +67,8 @@ namespace home1
             
             foreach (SpaceElement se in stars)
             {
-                Point p = se.draw();
-                buffer.Graphics.FillRectangle(new SolidBrush(Color.White), new Rectangle(p, new Size(1, 1)));
+                Point p;
+                buffer.Graphics.DrawImage(se.draw(out p), p);
             }
             
             buffer.Graphics.DrawImage(new Bitmap(Resources.planet, new Size(200, 200)), 100, 100);
@@ -75,7 +76,19 @@ namespace home1
             foreach (asteroid se in asteroids)
             {
                 Point P;
-                buffer.Graphics.DrawImage(se.draw(out P), P);
+                bool hit;
+                buffer.Graphics.DrawImage(se.draw(out P,out hit), P);
+                if (hit)
+                {
+                    crack cr = new crack(P);
+                    cracks.Add(cr);
+                }
+            }
+
+            foreach (crack cr in cracks)
+            {
+                Point P;
+                buffer.Graphics.DrawImage(cr.draw(out P), P);
             }
             buffer.Render();
             

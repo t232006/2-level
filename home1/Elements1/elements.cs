@@ -9,17 +9,38 @@ namespace elements
     public class SpaceElement
     {
         protected Point pos;
+        protected Bitmap image;
         public SpaceElement(Point pos)
         {
             this.pos = pos;
         }
-        public virtual Point draw()
+        public virtual Bitmap draw(out Point position)
         {
-            return pos;
+            position = pos;
+            image = new Bitmap(2, 2);
+            image.SetPixel(1, 1, Color.White);
+            return image;
         }
     }
 
     enum direction {grow, less}
+    public class crack : SpaceElement
+    {
+        protected Size size=new Size(160,160);
+        public crack(Point pos) : base(pos)
+        {
+
+        }
+
+        public override Bitmap draw(out Point LeftTop)
+        {
+            LeftTop = new Point(pos.X,pos.Y);
+            image = new Bitmap(Resources.crack,size);   
+            return image;
+
+        }
+    }
+    #region asteroid
     public class asteroid : SpaceElement
     {
 
@@ -27,8 +48,8 @@ namespace elements
         protected Size size;
         protected byte speed;
         protected bool zoom;
-        byte zoomprobability=40;
-        protected Bitmap image;
+        byte zoomprobability=25;
+        
         string filepicture;
         Size limitsizeMin=new Size(4,4);
         Size limitsizeMax=new Size(150,150);
@@ -61,17 +82,22 @@ namespace elements
             }else zoom = false;
             
         }
-        public Bitmap draw(out Point position)
+        public Bitmap draw(out Point position, out bool hit)
         {
             position = pos;
+            hit = false;
             if (zoom)
             {
                 if (direction==direction.grow)
                 size = new Size(size.Width + 1, size.Height + 1); else
                 size = new Size(size.Width - 1, size.Height - 1);
-                if (size.Equals(limitsizeMax)) direction = direction.less;
-                else
-                if (size.Equals(limitsizeMin)) direction = direction.grow;
+                    if (size.Equals(limitsizeMax))
+                    {
+                        direction = direction.less;
+                        hit = true;
+                    }
+                    else
+                    if (size.Equals(limitsizeMin)) direction = direction.grow;
                     image = new Bitmap(Image.FromFile(filepicture),size);
             }
             return image;
@@ -85,6 +111,7 @@ namespace elements
         }
 
     }
+    #endregion
     /*public class Star : SpaceElement
     {
         public Star(Point pos, Size size, double ang, byte speed) :base SpaceElement(pos, size, ang, speed)
