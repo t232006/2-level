@@ -6,7 +6,7 @@ using System.IO;
 
 namespace elements
 {
-    public class SpaceElement
+    public class SpaceElement //general class
     {
         protected Point pos;
         protected Bitmap image;
@@ -35,7 +35,7 @@ namespace elements
         public override Bitmap draw(out Point LeftTop)
         {
             LeftTop = new Point(pos.X,pos.Y);
-            image = new Bitmap(Resources.crack,size);   
+            image = new Bitmap(Resources.crack,size);   //from picture
             return image;
 
         }
@@ -47,13 +47,13 @@ namespace elements
         protected double ang; //angle
         protected Size size;
         protected byte speed;
-        protected bool zoom;
-        byte zoomprobability=25;
+        protected bool zoom;         //false - object moves in plate
+        byte zoomprobability=25;    //probability object will approach or depart
         
-        string filepicture;
-        Size limitsizeMin=new Size(4,4);
-        Size limitsizeMax=new Size(150,150);
-        direction direction;
+        string filepicture;     //picture from resources
+        Size limitsizeMin=new Size(4,4);    //limit of departure size
+        Size limitsizeMax=new Size(150,150); //limit of approach size
+        direction direction;            //enum zoom or less
 
         public byte ZoomProbability 
             { get => zoomprobability;
@@ -85,7 +85,7 @@ namespace elements
         public Bitmap draw(out Point position, out bool hit)
         {
             position = pos;
-            hit = false;
+            hit = false;   //trigger - if true it's nessesary to change girection
             if (zoom)
             {
                 if (direction==direction.grow)
@@ -98,7 +98,7 @@ namespace elements
                     }
                     else
                     if (size.Equals(limitsizeMin)) direction = direction.grow;
-                    image = new Bitmap(Image.FromFile(filepicture),size);
+                image = new Bitmap(Image.FromFile(filepicture),size);
             }
             return image;
         }
@@ -112,10 +112,4 @@ namespace elements
 
     }
     #endregion
-    /*public class Star : SpaceElement
-    {
-        public Star(Point pos, Size size, double ang, byte speed) :base SpaceElement(pos, size, ang, speed)
-        {
-        }
-    }*/
 }

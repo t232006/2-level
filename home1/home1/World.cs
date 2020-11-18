@@ -19,7 +19,6 @@ namespace home1
 
         public static int Width { set; get; }
         public static int Height { set; get; }
-        //static World() { }
         static asteroid[] asteroids;
         static SpaceElement[] stars;
         static List<crack> cracks=new List<crack>();
@@ -90,9 +89,7 @@ namespace home1
                 Point P;
                 buffer.Graphics.DrawImage(cr.draw(out P), P);
             }
-            buffer.Render();
-            
-
+            buffer.Render();  
         }
         static void Update()
         {
