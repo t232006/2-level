@@ -1,0 +1,12 @@
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.Properties.Resources.resources
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.csproj.GenerateResource.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.csproj.CoreCompileInputs.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\bin\Debug\home1.exe.config
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\bin\Debug\home1.exe
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\bin\Debug\home1.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.exe
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.csprojAssemblyReference.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\bin\Debug\Elements1.dll
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\bin\Debug\Elements1.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\home1\obj\Debug\home1.csproj.CopyComplete

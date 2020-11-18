@@ -1,0 +1,8 @@
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements.csproj.CoreCompileInputs.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\bin\Debug\Elements1.dll
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\bin\Debug\Elements1.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements1.Properties.Resources.resources
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements.csproj.GenerateResource.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements1.dll
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements1.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home1\Elements1\obj\Debug\Elements.csprojAssemblyReference.cache
