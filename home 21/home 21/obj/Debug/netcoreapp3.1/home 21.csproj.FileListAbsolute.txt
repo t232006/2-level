@@ -1,0 +1,13 @@
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.exe
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.deps.json
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.runtimeconfig.json
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.runtimeconfig.dev.json
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.dll
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\bin\Debug\netcoreapp3.1\home 21.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.csprojAssemblyReference.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.AssemblyInfoInputs.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.AssemblyInfo.cs
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.csproj.CoreCompileInputs.cache
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.dll
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.pdb
+C:\Users\Тим\Desktop\практика программирование\Sharp\2 level\home 21\home 21\obj\Debug\netcoreapp3.1\home 21.genruntimeconfig.cache
