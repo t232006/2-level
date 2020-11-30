@@ -12,7 +12,7 @@ using home1.Properties;
 
 namespace home1
 {
-    class World :IMoving
+    class World //: IMoving
     {
         private static BufferedGraphicsContext context;
         public static BufferedGraphics buffer;
@@ -22,8 +22,9 @@ namespace home1
         public static List<Keys> KeysPressed = new List<Keys>();
         static asteroid[] asteroids;
         static Star[] stars;
-        static Bullet bullet;
+        //static Bullet bullet;
         static List<crack> cracks=new List<crack>();
+        static List<Bullet> queue = new List<Bullet>();
         private static Timer timer1;
         static World() { }
         
@@ -44,15 +45,17 @@ namespace home1
         }
         public static void Shot()
         {
-            bullet = new Bullet(new Point(0, Height-70), new Size(45, 45), 35);
-            //bullet.draw();
+            Bullet bullet = new Bullet(new Point(0, Height-70), new Size(45, 45), 35);
+            queue.Add(bullet);
         }
 
         public static void SpeedCor(List<Keys> KeysPressed)
         {
             foreach (asteroid se in asteroids)
-                se.SpeedCor(KeysPressed);
-            if (bullet != null) bullet.SpeedCor(KeysPressed);
+                if (se!=null) se.SpeedCor(KeysPressed);
+            foreach (Bullet bullet in queue)
+                bullet.SpeedCor(KeysPressed);
+            //if (bullet != null) 
         }
 
         private static void LoadElements()
@@ -77,7 +80,12 @@ namespace home1
             }
             //Bullet _bullet=new Bullet()
         }
-
+        public static void aim(Point pos)
+        {
+            buffer.Graphics.DrawLine(new Pen(Color.Red), pos.X - 5, pos.Y, pos.X + 5, pos.Y);
+            buffer.Graphics.DrawLine(new Pen(Color.Red), pos.X, pos.Y - 5, pos.X, pos.Y + 5);
+        }
+        
         public static void Draw()
         {
             buffer.Graphics.Clear(Color.Black);
@@ -87,6 +95,7 @@ namespace home1
                       
             buffer.Graphics.DrawImage(new Bitmap(Resources.planet, new Size(200, 200)), 100, 100);
             
+
             foreach (asteroid se in asteroids)
             {               
                 //bool hit;
@@ -104,41 +113,33 @@ namespace home1
             foreach (crack cr in cracks)            
                 buffer.Graphics.DrawImage(cr.draw(out p), p);      
 
-            if (bullet != null) 
-                buffer.Graphics.DrawImage(bullet.draw(out p), p);
-
+            //if (bullet != null)
+            foreach (Bullet bullet in queue)
+                    buffer.Graphics.DrawImage(bullet.draw(out p), p);
+            
+            aim(new Point(400, 300));
             buffer.Render();  
         }
         static void Update()
         {
-            bool target=false;
-            if (bullet != null)
-                if (bullet.Move()) target = true; else target = false;
-            for (int i=0; i<asteroids.Length; i++)
-            {
-                if (asteroids[i] != null)
+            bool target=false;//if (bullet != null)
+            foreach (Bullet bullet in queue)
+                if (bullet.Move()) target = true; //else target = false;
+                
+                for (int i=0; i<asteroids.Length; i++)
                 {
-                    asteroids[i].Move(new Size(Width, Height));
-                    /*for (int j=1; j<asteroids.Length;j++)
+                    if (asteroids[i] != null)
                     {
-                        if ((i != j) && (asteroids[i].IsCollision(asteroids[j])))
-                        { asteroids[i].Collision(asteroids[j]);
-                            buffer.Graphics.DrawRectangle(new Pen(Color.White), asteroids[i].rect);
-                            //timer1.Stop();
-                            buffer.Render();
-                        }
-                            
-
-                    }*/
-                        
-                    if (target)
-                    {
-                        if (asteroids[i].IsCollision(bullet)) 
-                            Array.Clear(asteroids, i, 1); //Hit!! to delete from array   
-                    } 
-                }        
-            } 
-            if (target) bullet = null;
+                        asteroids[i].Move(new Size(Width, Height));
+                    
+                        if (target)
+                        {
+                            if (asteroids[i].IsCollision(queue.First())) 
+                                Array.Clear(asteroids, i, 1); //Hit!! to delete from array   
+                        } 
+                    }        
+                } 
+                if (target) queue.Remove(queue.First());
                 
         }
         private static void timer1_Tick(object sender, EventArgs e)
@@ -147,9 +148,6 @@ namespace home1
             Update();
         }
 
-        public void SpeedCor(List<char> KeysPressed)
-        {
-            throw new NotImplementedException();
-        }
+        
     }  
 }

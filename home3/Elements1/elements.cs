@@ -27,7 +27,7 @@ namespace elements
             //image = new Bitmap((Bitmap)Resources.ResourceManager.GetObject(filepicture), size);
             zoom = true;
             direction = direction.less;
-            ang = -Math.PI / 5;
+            ang = -Math.PI / 6;
         }
         public bool Move()    //ray moves to the screen center
         {

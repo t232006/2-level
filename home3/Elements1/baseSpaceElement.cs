@@ -22,7 +22,7 @@ namespace elements
     public interface IMoving
     {
         //public List<char> KeysPressed = new List<char>();
-        void SpeedCor(List<char> KeysPressed); //lr-left or right pressed; ud-up or down pressed
+        void SpeedCor(List<System.Windows.Forms.Keys> KeysPressed); //lr-left or right pressed; ud-up or down pressed
     }
     public interface IImpact
     {
