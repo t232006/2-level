@@ -68,8 +68,8 @@ namespace home1
             {
                 int[] kk=new int[4];
                 kk[0] = k.Next(Width); kk[1] = k.Next(Height);//position
-                //kk[0] = Width / 2; kk[1] = Height / 2;
-                kk[2] = k.Next(5, 20); //size
+                //kk[0] = 380; kk[1] = 290;
+                kk[2] = k.Next(20, 40); //size
                 kk[3] = k.Next(5,10); //speed 
                 
                 asteroids[i] = new asteroid(new Point(kk[0], kk[1]), new Size(kk[2], kk[2]), (byte)kk[3]);
@@ -126,21 +126,27 @@ namespace home1
             foreach (Bullet bullet in queue)
                 if (bullet.Move()) target = true; //else target = false;
                 
-                for (int i=0; i<asteroids.Length; i++)
+                foreach (asteroid ast in asteroids)
                 {
-                    if (asteroids[i] != null)
+                    if (ast != null)
                     {
-                        asteroids[i].Move(new Size(Width, Height));
+                        ast.Move(new Size(Width, Height));
                     
                         if (target)
                         {
-                            if (asteroids[i].IsCollision(queue.First())) 
-                                Array.Clear(asteroids, i, 1); //Hit!! to delete from array   
+                        //buffer.Graphics.DrawRectangle(new Pen(Color.White), queue.First().rect);
+                        buffer.Graphics.DrawImage(new Bitmap(Resources.bum), queue.First().rect);
+                        buffer.Render();
+                            if (ast.IsCollision(queue.First()))
+                                ast.asterFinish(); //Hit!!      
                         } 
                     }        
                 } 
                 if (target) queue.Remove(queue.First());
-                
+                for (int i = 0; i < asteroids.Length; i++)
+                    if ((asteroids[i]!=null)&&(asteroids[i].Levelife == 4)) //Time is over
+                        Array.Clear(asteroids, i, 1); //Delete from array   
+
         }
         private static void timer1_Tick(object sender, EventArgs e)
         {

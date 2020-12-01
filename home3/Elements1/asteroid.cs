@@ -26,6 +26,9 @@ namespace elements
         Size limitsizeMax = new Size(150, 150); //limit of approach size
         protected direction direction;            //enum zoom or less
         bool hit;
+        Timer timer2 = new Timer();
+        byte levellife=1;
+        public byte Levelife { get => levellife; }
         public bool Hit { get=> hit; }
 
         public Rectangle rect => new Rectangle(pos, size);
@@ -39,6 +42,22 @@ namespace elements
                 if ((ang > Math.PI / 2) && (ang < Math.PI)  || (ang > Math.PI * 4 / 3) && (ang < 2*Math.PI)) ang = -ang;
             }
         }*/
+        public void asterFinish()
+        {
+            timer2.Tick += timer2_Tick;
+            timer2.Interval = 300;
+            timer2.Start();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            filepicture = $"expl{levellife}";
+            var bm = Resources.ResourceManager.GetObject(filepicture);
+            this.image = new Bitmap((Bitmap)bm, new Size(size.Width*levellife,size.Height*levellife));
+            levellife++;
+            if (levellife == 4) 
+                timer2.Stop();  
+        }
 
         public bool IsCollision(IImpact obj)
         {
@@ -85,7 +104,6 @@ namespace elements
                 if (r <= zoomprobability / 2) direction = direction.grow; else direction = direction.less;
             }
             else zoom = false;
-
         }
         public override Bitmap draw(out Point position)
         {
@@ -104,7 +122,11 @@ namespace elements
                 }
                 else
                 if (size.Equals(limitsizeMin)) direction = direction.grow;
-                image = new Bitmap((Bitmap)Resources.ResourceManager.GetObject(filepicture), size);
+                try
+                {
+                    image = new Bitmap((Bitmap)Resources.ResourceManager.GetObject(filepicture), size);
+                } catch { levellife = 4; } finally { };
+                
             }
             return image;
         }
@@ -118,11 +140,6 @@ namespace elements
             pos.Y += dy+CorY;//realpos.Y; // coef;
             if ((pos.X < 0) || (pos.X > size.Width)) ang = Math.PI - ang;           
             if ((pos.Y < 0) || (pos.Y > size.Height)) ang = -ang;     
-        }
-
-        public void SpeedCor(List<char> KeysPressed)
-        {
-            throw new NotImplementedException();
         }
     }
 }

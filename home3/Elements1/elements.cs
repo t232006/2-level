@@ -41,7 +41,7 @@ namespace elements
             int dy = (int)Math.Round(speed * Math.Sin(ang));
             pos.X += dx + CorX;
             pos.Y += dy + CorY;
-            if (this.size.Width<5) return true; else return false;//true - center is reached
+            if (this.size.Width<7) return true; else return false;//true - center is reached
         }
         //public void SpeedCor(List<Keys> KeysPressed):base(KeysPressed);
 
